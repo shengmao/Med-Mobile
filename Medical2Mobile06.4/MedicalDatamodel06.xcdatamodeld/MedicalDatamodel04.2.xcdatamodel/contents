@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1171" systemVersion="11E53" minimumToolsVersion="Xcode 4.1" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Activity" representedClassName="Activity" syncable="YES">
+        <attribute name="longdescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sectiondate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="patient" minCount="1" maxCount="1" deletionRule="No Action" destinationEntity="Patient" inverseName="activity" inverseEntity="Patient" syncable="YES"/>
+        <relationship name="possibleclinicalissue" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="PossibleClinicalIssue" inverseName="activity" inverseEntity="PossibleClinicalIssue" syncable="YES"/>
+        <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="No Action" destinationEntity="User" inverseName="activity" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="Address" representedClassName="Address" syncable="YES">
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="postalcode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="street" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="patient" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="Patient" inverseName="adress" inverseEntity="Patient" syncable="YES"/>
+    </entity>
+    <entity name="Allergy" representedClassName="Allergy" syncable="YES">
+        <attribute name="shortdescription" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="patient" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Patient" inverseName="allergy" inverseEntity="Patient" syncable="YES"/>
+    </entity>
+    <entity name="Billing" representedClassName="Billing" syncable="YES">
+        <attribute name="cost" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="dateinsert" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="datepayed" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="iscalculated" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <relationship name="patient" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Patient" inverseName="billing" inverseEntity="Patient" syncable="YES"/>
+    </entity>
+    <entity name="Desease" representedClassName="Desease" syncable="YES">
+        <attribute name="dateinsert" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="datestart" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="longdescription" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="patient" minCount="1" maxCount="1" deletionRule="No Action" destinationEntity="Patient" inverseName="desease" inverseEntity="Patient" syncable="YES"/>
+        <relationship name="possibleicdnumber" minCount="1" maxCount="1" deletionRule="No Action" destinationEntity="PossibleICDNumber" inverseName="desease" inverseEntity="PossibleICDNumber" syncable="YES"/>
+        <relationship name="user" minCount="1" maxCount="1" deletionRule="No Action" destinationEntity="User" inverseName="desease" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="Document" representedClassName="Document" syncable="YES">
+        <attribute name="dateinsert" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="documentname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="documentType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="shortdescription" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="patient" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="Patient" inverseName="document" inverseEntity="Patient" syncable="YES"/>
+    </entity>
+    <entity name="Measurement" representedClassName="Measurement" syncable="YES">
+        <attribute name="dateinsert" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="value" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="patient" minCount="1" maxCount="1" deletionRule="No Action" destinationEntity="Patient" inverseName="measurement" inverseEntity="Patient" syncable="YES"/>
+        <relationship name="possibleToMeasure" minCount="1" maxCount="1" deletionRule="No Action" destinationEntity="PossibleToMeasure" inverseName="measurement" inverseEntity="PossibleToMeasure" syncable="YES"/>
+        <relationship name="user" optional="YES" minCount="1" maxCount="1" deletionRule="No Action" destinationEntity="User" inverseName="measurement" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="Patient" representedClassName="Patient" syncable="YES">
+        <attribute name="birthdate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="company" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="creditnumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dateincome" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="dateleave" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="insurancenumber" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mobilephone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="picture" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="telephone" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="activity" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Activity" inverseName="patient" inverseEntity="Activity" syncable="YES"/>
+        <relationship name="adress" optional="YES" toMany="YES" minCount="1" deletionRule="No Action" destinationEntity="Address" inverseName="patient" inverseEntity="Address" syncable="YES"/>
+        <relationship name="allergy" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Allergy" inverseName="patient" inverseEntity="Allergy" syncable="YES"/>
+        <relationship name="billing" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Billing" inverseName="patient" inverseEntity="Billing" syncable="YES"/>
+        <relationship name="desease" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Desease" inverseName="patient" inverseEntity="Desease" syncable="YES"/>
+        <relationship name="document" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Document" inverseName="patient" inverseEntity="Document" syncable="YES"/>
+        <relationship name="insurance" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="PossibleInsurance" inverseName="patient" inverseEntity="PossibleInsurance" syncable="YES"/>
+        <relationship name="measurement" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Measurement" inverseName="patient" inverseEntity="Measurement" syncable="YES"/>
+        <relationship name="possiblecreditinstitute" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="PossibleCreditInstitut" inverseName="patient" inverseEntity="PossibleCreditInstitut" syncable="YES"/>
+        <relationship name="possiblestationarytype" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="PossibleStationaryType" inverseName="patient" inverseEntity="PossibleStationaryType" syncable="YES"/>
+    </entity>
+    <entity name="PossibleClinicalIssue" representedClassName="PossibleClinicalIssue" syncable="YES">
+        <attribute name="longdescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="shortdescription" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="activity" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Activity" inverseName="possibleclinicalissue" inverseEntity="Activity" syncable="YES"/>
+    </entity>
+    <entity name="PossibleCreditInstitut" representedClassName="PossibleCreditInstitut" syncable="YES">
+        <attribute name="blz" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="patient" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Patient" inverseName="possiblecreditinstitute" inverseEntity="Patient" syncable="YES"/>
+    </entity>
+    <entity name="PossibleICDNumber" representedClassName="PossibleICDNumber" syncable="YES">
+        <attribute name="field1_typOfCoding" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="field2_printsign" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="field3_dimdi" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="field4_primaryKey" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="field5_starKey" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="field6_additionalKey" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="field7_description" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="desease" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Desease" inverseName="possibleicdnumber" inverseEntity="Desease" syncable="YES"/>
+    </entity>
+    <entity name="PossibleInsurance" representedClassName="PossibleInsurance" syncable="YES">
+        <attribute name="field01_ik_kv_karte" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="field02_name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="patient" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Patient" inverseName="insurance" inverseEntity="Patient" syncable="YES"/>
+    </entity>
+    <entity name="PossibleStationaryType" representedClassName="PossibleStationaryType" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="patient" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Patient" inverseName="possiblestationarytype" inverseEntity="Patient" syncable="YES"/>
+    </entity>
+    <entity name="PossibleToMeasure" representedClassName="PossibleToMeasure" syncable="YES">
+        <attribute name="abbreviation" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="longdescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="referenceFemale" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="referenceMale" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="shortdescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="unitOfMeasure" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="measurement" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Measurement" inverseName="possibleToMeasure" inverseEntity="Measurement" syncable="YES"/>
+    </entity>
+    <entity name="User" representedClassName="User" syncable="YES">
+        <attribute name="active" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="fname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="loginname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="loginpassword" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="activity" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Activity" inverseName="user" inverseEntity="Activity" syncable="YES"/>
+        <relationship name="desease" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Desease" inverseName="user" inverseEntity="Desease" syncable="YES"/>
+        <relationship name="measurement" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Measurement" inverseName="user" inverseEntity="Measurement" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Activity" positionX="25" positionY="-63" width="128" height="135"/>
+        <element name="Address" positionX="702" positionY="162" width="128" height="120"/>
+        <element name="Allergy" positionX="457" positionY="567" width="128" height="75"/>
+        <element name="Billing" positionX="675" positionY="306" width="128" height="120"/>
+        <element name="Desease" positionX="25" positionY="-243" width="128" height="135"/>
+        <element name="Document" positionX="655" positionY="486" width="128" height="105"/>
+        <element name="Measurement" positionX="25" positionY="99" width="128" height="120"/>
+        <element name="Patient" positionX="459" positionY="153" width="128" height="375"/>
+        <element name="PossibleClinicalIssue" positionX="-209" positionY="-63" width="128" height="90"/>
+        <element name="PossibleCreditInstitut" positionX="-137" positionY="531" width="128" height="90"/>
+        <element name="PossibleICDNumber" positionX="-207" positionY="-273" width="128" height="165"/>
+        <element name="PossibleInsurance" positionX="-81" positionY="288" width="128" height="90"/>
+        <element name="PossibleStationaryType" positionX="-191" positionY="402" width="128" height="75"/>
+        <element name="PossibleToMeasure" positionX="-207" positionY="120" width="128" height="150"/>
+        <element name="User" positionX="700" positionY="-30" width="128" height="165"/>
+    </elements>
+</model>
